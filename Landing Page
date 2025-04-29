@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modern Landing Page</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">
+        <img src="c:\Users\USER\Downloads\logo.png" alt="My Website Logo" />
+        <img src="c:\Users\USER\Downloads\1745927436326.png" alt="Logo 2" alt="Ccs">
+        <div class="university-name">
+            <span class="main-name">Western Mindanao State University</span>
+            <span class="college-name">Computer Studies</span>
+          </div>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About us</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><button class="login-btn">Login</button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1><strong>Got</strong> a Problem? No problem!</h1>
+      <p>Let us help you get back on track—quickly, reliably, and hassle-free.
+        Email us at YourEmail@university.edu to request support and our team will assist you as soon as possible.</p>
+      <button class="get-started">Get Started →</button>
+    </div>
+  </section>
+</body>
+</html>
+----------------------------------------------
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    color: #e0e2e6;
+    background: linear-gradient(to bottom right, #990000);
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  header {
+    display: flex;
+    justify-content: space-between; /* Space between logo and nav */
+    align-items: center; /* Vertically aligns the content */
+    padding: 15px 60px;
+    background-color: #fff; /* White background for header */
+    color: #000; /* Black text color */
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .logo img {
+    height: 70px;
+    width: auto;
+  }
+  
+  .university-name {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #000000;
+    line-height: 1.2;
+  }
+  
+  .college-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #0a0505;
+  }
+  
+  /* Ensure nav container takes available space */
+  nav {
+    display: flex;
+    justify-content: flex-end; /* Align nav items to the right */
+    flex-grow: 1; /* Makes nav grow and occupy remaining space */
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+  
+  nav a {
+    color: #000000;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .login-btn {
+    background: transparent;
+    border: 1px solid #000000;
+    padding: 8px 20px;
+    border-radius: 20px;
+    color: #000000;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  
+  .login-btn:hover {
+    background: #000000;
+    color: #ffffff;
+  }
+  
+  .hero {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Aligns content to the left */
+    height: calc(100vh - 100px);
+    background-size: cover;
+    background-position: center;
+    padding: 0 60px;
+    text-align: left;
+  }
+  
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-radial-gradient(
+      ellipse at left,
+      rgba(255, 255, 255, 0.05) 0px,
+      rgba(255, 255, 255, 0.05) 1px,
+      transparent 2px,
+      transparent 40px
+    );
+    z-index: 0;
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+  }
+  
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+  }
+  
+  .hero p {
+    line-height: 1.6;
+    font-size: 1rem;
+    margin-bottom: 30px;
+  }
+  
+  .get-started {
+    padding: 10px 25px;
+    font-size: 1rem;
+    border: 1px solid #000000;
+    background: transparent;
+    color: #000000;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  
+  .get-started:hover {
+    background: #000000;
+    color: #ffffff;
+  }
+  ---------------------------------------------
+// Wait for the DOM to fully load
+document.addEventListener("DOMContentLoaded", () => {
+    const getStartedBtn = document.querySelector(".get-started");
+    const loginBtn = document.querySelector(".login-btn");
+  
+    getStartedBtn.addEventListener("click", () => {
+      alert("Thank you for getting started!");
+      // Redirect if needed: window.location.href = "signup.html";
+    });
+  
+    loginBtn.addEventListener("click", () => {
+      alert("Login button clicked!");
+      // Redirect if needed: window.location.href = "login.html";
+    });
+  });
