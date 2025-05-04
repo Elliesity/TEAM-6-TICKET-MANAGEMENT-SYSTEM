@@ -1,369 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - Ticketing System</title>
-    <link rel="stylesheet" href="CSS/AdminDashboard.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <!-- Sidebar -->
+  <div class="wrapper">
     <div class="sidebar">
-        <img src="../IMG/adminPic.jpg" alt="Admin Picture">
-        <h2>Hello Ali!</h2>
-        <ul class="nav-links">
-            <li onclick="showSection('dashboard')">Dashboard</li>
-            <li onclick="showSection('tickets')">Manage Tickets</li>
-            <li onclick="showSection('users')">Users</li>
-            <li onclick="showSection('reports')">Reports</li>
-            <li onclick="showSection('settings')">Settings</li>
-            <li onclick="showSection('logout')">Logout</li>
-        </ul>
+      <img src="../IMG/adminPic.jpg" alt="Admin Picture">
+      <h2>Hello Ali!</h2>
+      <ul class="nav-links">
+        <li class="active" onclick="showSection('dashboard')">Dashboard</li>
+        <li onclick="showSection('tickets')">Manage Tickets</li>
+        <li onclick="showSection('users')">Users</li>
+        <li onclick="showSection('reports')">Reports</li>
+        <li onclick="showSection('settings')">Settings</li>
+        <li onclick="showSection('logout')">Logout</li>
+      </ul>
     </div>
 
-    <!-- Main Content -->
     <div class="main-content">
-        <!-- Dashboard Section -->
-        <div id="dashboard" class="section">
-            <h1>Welcome, Ali!</h1>
-            <div class="stats">
-                <div class="card">
-                    <h2>124</h2>
-                    <p>Tickets Availed</p>
-                </div>
-                <div class="card">
-                    <h2>58</h2>
-                    <p>Tickets Pending</p>
-                </div>
-                <div class="card">
-                    <h2>23</h2>
-                    <p>Users Online</p>
-                </div>
-                <div class="card">
-                    <h2>320</h2>
-                    <p>Total Users</p>
-                </div>
-            </div>
-
-            <div class="online-users">
-                <h2>Currently Online Users</h2>
-                <div class="table-controls">
-                    <div class="search-box">
-                        <input type="text" placeholder="Search users...">
-                    </div>
-                </div>
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Role</th>
-                            <th>Status</th>
-                            <th>Last Active</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>John Doe</td>
-                            <td>john@example.com</td>
-                            <td>Support Agent</td>
-                            <td><span class="status-badge online">Online</span></td>
-                            <td>5 mins ago</td>
-                        </tr>
-                        <tr>
-                            <td>Jane Smith</td>
-                            <td>jane@example.com</td>
-                            <td>Manager</td>
-                            <td><span class="status-badge online">Online</span></td>
-                            <td>Just now</td>
-                        </tr>
-                        <tr>
-                            <td>Mike Johnson</td>
-                            <td>mike@example.com</td>
-                            <td>Support Agent</td>
-                            <td><span class="status-badge online">Online</span></td>
-                            <td>2 mins ago</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="chart-container">
-                <canvas id="ticketChart"></canvas>
-            </div>
+      <div id="dashboard" class="section active">
+        <h1>Welcome, Ali!</h1>
+        <div class="stats">
+          <div class="card">
+            <h2>124</h2>
+            <p>Tickets Availed</p>
+          </div>
+          <div class="card">
+            <h2>58</h2>
+            <p>Tickets Pending</p>
+          </div>
+          <div class="card">
+            <h2>23</h2>
+            <p>Users Online</p>
+          </div>
+          <div class="card">
+            <h2>320</h2>
+            <p>Total Users</p>
+          </div>
         </div>
-        <!-- Manage Tickets Section -->
-        <div id="tickets" class="section" style="display:none">
-          <h1>Manage Tickets</h1>
-          <div class="table-controls">
-              <div class="search-box">
-                  <input type="text" placeholder="Search tickets...">
-              </div>
-              <div class="filter-box">
-                  <select class="filter-select">
-                      <option value="">All Status</option>
-                      <option value="open">Open</option>
-                      <option value="pending">Pending</option>
-                      <option value="closed">Closed</option>
-                  </select>
-                  <select class="filter-select">
-                      <option value="">All Priority</option>
-                      <option value="high">High</option>
-                      <option value="medium">Medium</option>
-                      <option value="low">Low</option>
-                  </select>
-              </div>
-          </div>
 
-          <table class="data-table tickets-table">
-              <thead>
-                  <tr>
-                      <th>Ticket ID</th>
-                      <th>Subject</th>
-                      <th>Status</th>
-                      <th>Priority</th>
-                      <th>Assigned To</th>
-                      <th>Actions</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr>
-                      <td>#001</td>
-                      <td>Login Issue</td>
-                      <td><span class="status-badge open">Open</span></td>
-                      <td><span class="priority-badge high">High</span></td>
-                      <td>John Doe</td>
-                      <td class="action-buttons">
-                          <button class="viewBtn" onclick="viewTicket(this)">View</button>
-                          <button class="editBtn" onclick="editTicket(this)">Edit</button>
-                          <button class="deleteBtn" onclick="deleteTicket(this)">Delete</button>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td>#002</td>
-                      <td>Payment Failed</td>
-                      <td><span class="status-badge pending">Pending</span></td>
-                      <td><span class="priority-badge medium">Medium</span></td>
-                      <td>Jane Smith</td>
-                      <td class="action-buttons">
-                          <button class="viewBtn" onclick="viewTicket(this)">View</button>
-                          <button class="editBtn" onclick="editTicket(this)">Edit</button>
-                          <button class="deleteBtn" onclick="deleteTicket(this)">Delete</button>
-                      </td>
-                  </tr>
-              </tbody>
+        <div class="online-users">
+          <h2>Currently Online Users</h2>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th>Last Active</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>John Doe</td>
+                <td>john@example.com</td>
+                <td>Support Agent</td>
+                <td><span class="status-badge online">Online</span></td>
+                <td>5 mins ago</td>
+              </tr>
+              <tr>
+                <td>Jane Smith</td>
+                <td>jane@example.com</td>
+                <td>Manager</td>
+                <td><span class="status-badge online">Online</span></td>
+                <td>Just now</td>
+              </tr>
+            </tbody>
           </table>
-
-          <div class="table-pagination">
-              <div class="pagination-info">Showing 1-2 of 2 entries</div>
-              <div class="pagination-controls">
-                  <button class="pagination-button prev" disabled>Previous</button>
-                  <button class="pagination-button active">1</button>
-                  <button class="pagination-button next" disabled>Next</button>
-              </div>
-          </div>
+        </div>
       </div>
 
-      <!-- Users Section -->
-      <div id="users" class="section" style="display:none">
-          <h1>Users Management</h1>
-          <div class="table-controls">
-              <div class="search-box">
-                  <input type="text" placeholder="Search users...">
-              </div>
-              <div class="filter-box">
-                  <select class="filter-select">
-                      <option value="">All Roles</option>
-                      <option value="admin">Admin</option>
-                      <option value="agent">Support Agent</option>
-                      <option value="user">User</option>
-                  </select>
-                  <select class="filter-select">
-                      <option value="">All Status</option>
-                      <option value="active">Active</option>
-                      <option value="pending">Pending</option>
-                      <option value="inactive">Inactive</option>
-                  </select>
-              </div>
-          </div>
-
-          <table class="data-table users-table">
-              <thead>
-                  <tr>
-                      <th>Name</th>
-                      <th>Email</th>
-                      <th>Role</th>
-                      <th>Status</th>
-                      <th>Actions</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr>
-                      <td>John Doe</td>
-                      <td>john@example.com</td>
-                      <td>Support Agent</td>
-                      <td><span class="status-badge pending">Pending</span></td>
-                      <td class="action-buttons">
-                          <button class="approve-btn" onclick="approveUser(this)">Approve</button>
-                          <button class="reject-btn" onclick="rejectUser(this)">Reject</button>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td>Jane Smith</td>
-                      <td>jane@example.com</td>
-                      <td>Admin</td>
-                      <td><span class="status-badge active">Active</span></td>
-                      <td class="action-buttons">
-                          <button class="viewBtn" onclick="viewUser(this)">View</button>
-                          <button class="editBtn" onclick="editUser(this)">Edit</button>
-                          <button class="deleteBtn" onclick="deleteUser(this)">Delete</button>
-                      </td>
-                  </tr>
-              </tbody>
+      <div id="tickets" class="section">
+        <h1>Manage Tickets</h1>
+        <div class="ticket-list">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Ticket ID</th>
+                <th>Subject</th>
+                <th>Created At</th>
+                <th>Status</th>
+                <th>Assigned To</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>#1023</td>
+                <td>Website Issue</td>
+                <td>2025-04-28</td>
+                <td><span class="status-badge online">Pending</span></td>
+                <td>Mike Johnson</td>
+                <td><button class="btn">View</button></td>
+              </tr>
+              <tr>
+                <td>#1024</td>
+                <td>Login Problem</td>
+                <td>2025-05-01</td>
+                <td><span class="status-badge online">In Progress</span></td>
+                <td>John Doe</td>
+                <td><button class="btn">View</button></td>
+              </tr>
+              <tr>
+                <td>#1025</td>
+                <td>Account Update</td>
+                <td>2025-05-02</td>
+                <td><span class="status-badge online">Resolved</span></td>
+                <td>Jane Smith</td>
+                <td><button class="btn">View</button></td>
+              </tr>
+            </tbody>
           </table>
-
-          <div class="table-pagination">
-              <div class="pagination-info">Showing 1-2 of 2 entries</div>
-              <div class="pagination-controls">
-                  <button class="pagination-button prev" disabled>Previous</button>
-                  <button class="pagination-button active">1</button>
-                  <button class="pagination-button next" disabled>Next</button>
-              </div>
-          </div>
-      </div>
-        <!-- Reports Section -->
-        <div id="reports" class="section" style="display:none">
-          <h1>Reports</h1>
-          <div class="stats">
-              <div class="card">
-                  <h2>197</h2>
-                  <p>Total Tickets</p>
-              </div>
-              <div class="card">
-                  <h2>65</h2>
-                  <p>Open Tickets</p>
-              </div>
-              <div class="card">
-                  <h2>102</h2>
-                  <p>Closed Tickets</p>
-              </div>
-              <div class="card">
-                  <h2>30</h2>
-                  <p>Pending Tickets</p>
-              </div>
-          </div>
-
-          <div class="reports-charts">
-              <div class="chart-wrapper">
-                  <h3>Ticket Status Distribution</h3>
-                  <canvas id="reportChart"></canvas>
-              </div>
-              <div class="chart-wrapper">
-                  <h3>Monthly Ticket Trends</h3>
-                  <canvas id="trendChart"></canvas>
-              </div>
-          </div>
+        </div>
       </div>
 
-      <!-- Settings Section -->
-      <div id="settings" class="section" style="display:none">
-          <h1>Settings</h1>
-          <form class="settings-form">
-              <div class="form-group">
-                  <label for="notifications">Email Notifications</label>
-                  <select id="notifications" class="form-control">
-                      <option value="enabled">Enabled</option>
-                      <option value="disabled">Disabled</option>
-                  </select>
-              </div>
-              <button type="button" class="save-btn">Save Settings</button>
-          </form>
+      <div id="users" class="section">
+        <h1>User Management</h1>
+        <div class="user-list">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>User ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>#201</td>
+                <td>Ali Ahmed</td>
+                <td>ali.ahmed@example.com</td>
+                <td>Admin</td>
+                <td><span class="status-badge online">Active</span></td>
+                <td><button class="btn">Edit</button><button class="btn">Delete</button></td>
+              </tr>
+              <tr>
+                <td>#202</td>
+                <td>John Doe</td>
+                <td>john.doe@example.com</td>
+                <td>Support Agent</td>
+                <td><span class="status-badge online">Active</span></td>
+                <td><button class="btn">Edit</button><button class="btn">Delete</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
 
-      <!-- Logout Section -->
-      <div id="logout" class="section" style="display:none">
-          <h1>Logout</h1>
-          <div class="logout-confirmation">
-              <p>Are you sure you want to logout?</p>
-              <button class="logout-btn">Logout</button>
+      <div id="reports" class="section">
+        <h1>Reports</h1>
+        <div class="report-summary">
+          <div class="report-card">
+            <h2>Tickets Summary</h2>
+            <p>Total Tickets: 305</p>
+            <p>Resolved: 250</p>
+            <p>Pending: 40</p>
+            <p>In Progress: 15</p>
           </div>
-      </div>
-
-      <!-- Modals -->
-      <!-- View Ticket Modal -->
-      <div id="viewTicketModal" class="modal">
-          <div class="modal-content">
-              <!-- Content will be dynamically inserted -->
+          <div class="report-card">
+            <h2>User Activity</h2>
+            <p>Active Users: 230</p>
+            <p>Inactive Users: 50</p>
+            <p>New Registrations: 5</p>
           </div>
+        </div>
       </div>
 
-      <!-- Edit Ticket Modal -->
-      <div id="editTicketModal" class="modal">
-          <div class="modal-content">
-              <span class="close">&times;</span>
-              <h2>Edit Ticket</h2>
-              <form id="editTicketForm">
-                  <div class="form-group">
-                      <label>Subject:</label>
-                      <input type="text" id="editSubject" required>
-                  </div>
-                  <div class="form-group">
-                      <label>Status:</label>
-                      <select id="editStatus">
-                          <option value="Open">Open</option>
-                          <option value="Pending">Pending</option>
-                          <option value="Closed">Closed</option>
-                      </select>
-                  </div>
-                  <div class="form-group">
-                      <label>Priority:</label>
-                      <select id="editPriority">
-                          <option value="High">High</option>
-                          <option value="Medium">Medium</option>
-                          <option value="Low">Low</option>
-                      </select>
-                  </div>
-                  <div class="form-group">
-                      <label>Assigned To:</label>
-                      <input type="text" id="editAssigned" required>
-                  </div>
-                  <div class="modal-buttons">
-                      <button type="submit" class="save-btn">Save Changes</button>
-                      <button type="button" class="cancel-btn" onclick="closeModal(this)">Cancel</button>
-                  </div>
-              </form>
+      <div id="settings" class="section">
+        <h1>Settings</h1>
+        <form class="settings-form">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" placeholder="Enter your username">
           </div>
-      </div>
-
-      <!-- Delete Ticket Modal -->
-      <div id="deleteTicketModal" class="modal">
-          <div class="modal-content">
-              <!-- Content will be dynamically inserted -->
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Enter your email">
           </div>
-      </div>
-
-      <!-- User Management Modals -->
-      <div id="viewUserModal" class="modal">
-          <div class="modal-content">
-              <!-- Content will be dynamically inserted -->
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter your password">
           </div>
+          <button type="submit" class="btn">Save Changes</button>
+        </form>
       </div>
 
-      <div id="editUserModal" class="modal">
-          <div class="modal-content">
-              <!-- Content will be dynamically inserted -->
-          </div>
+      <div id="logout" class="section">
+        <h1>Logout</h1>
+        <p>You have successfully logged out. See you next time!</p>
+        <button onclick="window.location.href='login.html'" class="btn">Back to Login</button>
       </div>
-
-      <div id="deleteUserModal" class="modal">
-          <div class="modal-content">
-              <!-- Content will be dynamically inserted -->
-          </div>
-      </div>
-
+    </div>
   </div>
 
-  <script src="SCRIPT/admin.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      showSection('dashboard');
+    });
+
+    function showSection(sectionId) {
+      const sections = document.querySelectorAll('.section');
+      sections.forEach(section => {
+        section.classList.remove('active');
+      });
+      document.getElementById(sectionId).classList.add('active');
+    }
+  </script>
 </body>
 </html>
