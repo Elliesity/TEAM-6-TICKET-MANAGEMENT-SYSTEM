@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="sidebar">
+      <img src="../IMG/adminPic.jpg" alt="Admin Picture">
+      <h2>Hello Ali!</h2>
+      <ul class="nav-links">
+        <li class="active" onclick="showSection('dashboard')">Dashboard</li>
+        <li onclick="showSection('tickets')">Manage Tickets</li>
+        <li onclick="showSection('users')">Users</li>
+        <li onclick="showSection('reports')">Reports</li>
+        <li onclick="showSection('settings')">Settings</li>
+        <li onclick="showSection('logout')">Logout</li>
+      </ul>
+    </div>
+
+    <div class="main-content">
+      <div id="dashboard" class="section active">
+        <h1>Welcome, Ali!</h1>
+        <div class="stats">
+          <div class="card">
+            <h2>124</h2>
+            <p>Tickets Availed</p>
+          </div>
+          <div class="card">
+            <h2>58</h2>
+            <p>Tickets Pending</p>
+          </div>
+          <div class="card">
+            <h2>23</h2>
+            <p>Users Online</p>
+          </div>
+          <div class="card">
+            <h2>320</h2>
+            <p>Total Users</p>
+          </div>
+        </div>
+
+        <div class="online-users">
+          <h2>Currently Online Users</h2>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th>Last Active</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>John Doe</td>
+                <td>john@example.com</td>
+                <td>Support Agent</td>
+                <td><span class="status-badge online">Online</span></td>
+                <td>5 mins ago</td>
+              </tr>
+              <tr>
+                <td>Jane Smith</td>
+                <td>jane@example.com</td>
+                <td>Manager</td>
+                <td><span class="status-badge online">Online</span></td>
+                <td>Just now</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="tickets" class="section">
+        <h1>Manage Tickets</h1>
+        <div class="ticket-list">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Ticket ID</th>
+                <th>Subject</th>
+                <th>Created At</th>
+                <th>Status</th>
+                <th>Assigned To</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>#1023</td>
+                <td>Website Issue</td>
+                <td>2025-04-28</td>
+                <td><span class="status-badge online">Pending</span></td>
+                <td>Mike Johnson</td>
+                <td><button class="btn">View</button></td>
+              </tr>
+              <tr>
+                <td>#1024</td>
+                <td>Login Problem</td>
+                <td>2025-05-01</td>
+                <td><span class="status-badge online">In Progress</span></td>
+                <td>John Doe</td>
+                <td><button class="btn">View</button></td>
+              </tr>
+              <tr>
+                <td>#1025</td>
+                <td>Account Update</td>
+                <td>2025-05-02</td>
+                <td><span class="status-badge online">Resolved</span></td>
+                <td>Jane Smith</td>
+                <td><button class="btn">View</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="users" class="section">
+        <h1>User Management</h1>
+        <div class="user-list">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>User ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>#201</td>
+                <td>Ali Ahmed</td>
+                <td>ali.ahmed@example.com</td>
+                <td>Admin</td>
+                <td><span class="status-badge online">Active</span></td>
+                <td><button class="btn">Edit</button><button class="btn">Delete</button></td>
+              </tr>
+              <tr>
+                <td>#202</td>
+                <td>John Doe</td>
+                <td>john.doe@example.com</td>
+                <td>Support Agent</td>
+                <td><span class="status-badge online">Active</span></td>
+                <td><button class="btn">Edit</button><button class="btn">Delete</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="reports" class="section">
+        <h1>Reports</h1>
+        <div class="report-summary">
+          <div class="report-card">
+            <h2>Tickets Summary</h2>
+            <p>Total Tickets: 305</p>
+            <p>Resolved: 250</p>
+            <p>Pending: 40</p>
+            <p>In Progress: 15</p>
+          </div>
+          <div class="report-card">
+            <h2>User Activity</h2>
+            <p>Active Users: 230</p>
+            <p>Inactive Users: 50</p>
+            <p>New Registrations: 5</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="settings" class="section">
+        <h1>Settings</h1>
+        <form class="settings-form">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" placeholder="Enter your username">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Enter your email">
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter your password">
+          </div>
+          <button type="submit" class="btn">Save Changes</button>
+        </form>
+      </div>
+
+      <div id="logout" class="section">
+        <h1>Logout</h1>
+        <p>You have successfully logged out. See you next time!</p>
+        <button onclick="window.location.href='login.html'" class="btn">Back to Login</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      showSection('dashboard');
+    });
+
+    function showSection(sectionId) {
+      const sections = document.querySelectorAll('.section');
+      sections.forEach(section => {
+        section.classList.remove('active');
+      });
+      document.getElementById(sectionId).classList.add('active');
+    }
+  </script>
+</body>
+</html>
